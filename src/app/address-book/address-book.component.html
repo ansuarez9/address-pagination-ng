@@ -1,0 +1,7 @@
+<div class="mt-5 container">
+    <div class="card-group">
+        <span class="d-flex" *ngFor="let a of viewAddresses">
+            <address-card (onSelected)="onSelected($event)" [address]="a"></address-card>
+        </span>
+    </div>
+</div>

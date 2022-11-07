@@ -1,0 +1,18 @@
+<div class="card" [ngClass]="{'border-success text-bg-light': address?.selected}">
+    <div class="card-body">
+      <h5 class="card-title">{{address?.nickname}}</h5>
+      <p class="card-text">
+          {{address?.fullName}}<br/>
+          {{address?.address1}} {{address?.address2}}<br/>
+          {{address?.city}}, {{address?.state}} {{address?.zip}}<br/>
+      </p>
+      <div class="d-flex">
+        <button class="btn" 
+          (click)="changeSelected(address)"
+          [ngClass]="{'btn-success': address?.selected, 'btn-outline-primary': !address?.selected}"
+          [disabled]="address?.selected"
+          >{{address?.selected ? 'Selected' : 'Ship Here'}}</button>
+        <button (click)="selectAddressToUpdate()" data-bs-toggle="modal" data-bs-target="#addressModal" class="btn btn-secondary">Edit</button>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="modal fade" tabindex="-1" id="addressModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{updateMode ? 'Update' : 'New'}} Address</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form novalidate [formGroup]="addressForm" (ngSubmit)="saveForm()">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="nickname" class="form-label">Nickname</label>
+                        <input type="input" class="form-control" id="nickname" placeholder="John Doe's Bachelor Pad" formControlName="nickname">
+                        <div class="form-text">Give you address an alias.</div>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="addressSelected" formControlName="selected">
+                        <label class="form-check-label" for="addressSelected">Ship Here</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fullname" class="form-label">Full Name</label>
+                        <input type="input" class="form-control" id="fullname" placeholder="John Doe" formControlName="fullName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="address1" class="form-label">Address 1</label>
+                        <input type="input" class="form-control" id="address1" placeholder="Street Address" formControlName="address1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="address2" class="form-label">Address 2</label>
+                        <input type="input" class="form-control" id="address2" placeholder="Apartment, Studio, Room, Suite" formControlName="address2">
+                    </div>
+                    <div class="mb-3">
+                        <label for="city" class="form-label">City</label>
+                        <input type="input" class="form-control" id="city" placeholder="New York" formControlName="city">
+                    </div>
+                    <div class="mb-3">
+                        <label for="state" class="form-label">State</label>
+                        <input type="input" class="form-control" id="state" placeholder="New York" formControlName="state">
+                    </div>
+                    <div class="mb-3">
+                        <label for="zip" class="form-label">Zip Code</label>
+                        <input type="input" class="form-control" id="zip" placeholder="55555" formControlName="zip">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
