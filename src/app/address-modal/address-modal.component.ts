@@ -47,7 +47,10 @@ export class AddressModalComponent implements OnInit, OnDestroy {
     }
 
     saveForm() {
-        console.log(this.addressForm.value);
         this.addressService.saveAddressForm(this.addressForm.value);
+    }
+
+    deleteAddress() {
+        this.addressService.saveAddressForm(this.addressForm.value, true);
     }
 }

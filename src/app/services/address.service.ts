@@ -4,8 +4,8 @@ import { Address } from "../interfaces/IAddress";
 
 @Injectable()
 export class AddressService {
-    private _addressToUpdate: Subject<Address> = new Subject();
-    addressToUpdate$: Observable<Address> = this._addressToUpdate.asObservable();
+    private _addressToUpdate: Subject<{address: Address, deleteAddress: boolean}> = new Subject();
+    addressToUpdate$: Observable<{address: Address, deleteAddress: boolean}> = this._addressToUpdate.asObservable();
 
     private _addressToModal: Subject<Address> = new Subject();
     addressToModal$: Observable<Address> = this._addressToModal.asObservable();
@@ -97,8 +97,8 @@ export class AddressService {
         return of(this.data);
     }
 
-    saveAddressForm(address: Address){
-        this._addressToUpdate.next(address);
+    saveAddressForm(address: Address, deleteAddress = false){
+        this._addressToUpdate.next({address: address, deleteAddress: deleteAddress});
     }
 
     sendAddressToModal(address: Address){

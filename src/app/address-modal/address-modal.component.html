@@ -42,6 +42,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" *ngIf="updateMode" (click)="deleteAddress()" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
                     <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
                 </div>
             </form>

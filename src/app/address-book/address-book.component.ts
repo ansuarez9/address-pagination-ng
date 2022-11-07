@@ -39,8 +39,10 @@ export class AddressBookComponent implements OnInit, OnDestroy {
             .pipe(
                 takeUntil(this.destroySubscriptions$)
             )
-            .subscribe(address => {
-                if(address.selected){
+            .subscribe(({address, deleteAddress}) => {
+                if(deleteAddress){
+                    this.addresses = this.addresses.filter(a => a.id !== address.id);
+                } else if(address.selected){
                     this.resetSelectedProp();
                 }
                 if(address.id){
