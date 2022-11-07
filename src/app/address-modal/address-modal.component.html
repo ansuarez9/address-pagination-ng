@@ -3,47 +3,130 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{updateMode ? 'Update' : 'New'}} Address</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closeBtn></button>
             </div>
             <form novalidate [formGroup]="addressForm" (ngSubmit)="saveForm()">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="nickname" class="form-label">Nickname</label>
-                        <input type="input" class="form-control" id="nickname" placeholder="John Doe's Bachelor Pad" formControlName="nickname">
+                        <input 
+                            type="input" 
+                            class="form-control" 
+                            id="nickname" 
+                            placeholder="John Doe's Bachelor Pad" 
+                            formControlName="nickname"
+                            [ngClass]="{'is-invalid': (addressForm.get('nickname')?.touched || addressForm.get('nickname')?.dirty || submitted) && !addressForm.get('nickname')?.valid }"
+                         />
+                        <span class="invalid-feedback">
+                            <span *ngIf="addressForm.get('nickname')?.errors?.required">
+                              Please enter a nickname.
+                            </span>
+                        </span>
                         <div class="form-text">Give you address an alias.</div>
                     </div>
                     <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="addressSelected" formControlName="selected">
+                        <input
+                            type="checkbox"
+                            class="form-check-input"
+                            id="addressSelected"
+                            formControlName="selected" 
+                        />
                         <label class="form-check-label" for="addressSelected">Ship Here</label>
                     </div>
                     <div class="mb-3">
                         <label for="fullname" class="form-label">Full Name</label>
-                        <input type="input" class="form-control" id="fullname" placeholder="John Doe" formControlName="fullName">
+                        <input 
+                            type="input" 
+                            class="form-control"
+                            id="fullname"
+                            placeholder="John Doe"
+                            formControlName="fullName"
+                            [ngClass]="{'is-invalid': (addressForm?.get('fullName')?.touched || addressForm?.get('fullName')?.dirty || submitted) && !addressForm?.get('fullName')?.valid }"
+                        />
+                        <span class="invalid-feedback">
+                            <span *ngIf="addressForm?.get('fullName')?.errors?.required">
+                              Please enter a full name.
+                            </span>
+                        </span>
                     </div>
                     <div class="mb-3">
                         <label for="address1" class="form-label">Address 1</label>
-                        <input type="input" class="form-control" id="address1" placeholder="Street Address" formControlName="address1">
+                        <input 
+                            type="input" 
+                            class="form-control" 
+                            id="address1" 
+                            placeholder="Street Address" 
+                            formControlName="address1"
+                            [ngClass]="{'is-invalid': (addressForm?.get('address1')?.touched || addressForm?.get('address1')?.dirty || submitted) && !addressForm?.get('address1')?.valid }"
+                        />
+                        <span class="invalid-feedback">
+                            <span *ngIf="addressForm?.get('address1')?.errors?.required">
+                              Please enter a street address.
+                            </span>
+                        </span>
                     </div>
                     <div class="mb-3">
                         <label for="address2" class="form-label">Address 2</label>
-                        <input type="input" class="form-control" id="address2" placeholder="Apartment, Studio, Room, Suite" formControlName="address2">
+                        <input
+                        type="input"
+                        class="form-control"
+                        id="address2"
+                        placeholder="Apartment, Studio, Room, Suite"
+                        formControlName="address2"
+                    />
                     </div>
                     <div class="mb-3">
                         <label for="city" class="form-label">City</label>
-                        <input type="input" class="form-control" id="city" placeholder="New York" formControlName="city">
+                        <input
+                        type="input"
+                        class="form-control"
+                        id="city"
+                        placeholder="New York"
+                        formControlName="city"
+                        [ngClass]="{'is-invalid': (addressForm?.get('city')?.touched || addressForm?.get('city')?.dirty || submitted) && !addressForm?.get('city')?.valid }"
+                    />
+                    <span class="invalid-feedback">
+                        <span *ngIf="addressForm?.get('city')?.errors?.required">
+                          Please enter a city.
+                        </span>
+                    </span>
                     </div>
                     <div class="mb-3">
                         <label for="state" class="form-label">State</label>
-                        <input type="input" class="form-control" id="state" placeholder="New York" formControlName="state">
+                        <input
+                            type="input"
+                            class="form-control"
+                            id="state"
+                            placeholder="New York"
+                            formControlName="state"
+                            [ngClass]="{'is-invalid': (addressForm?.get('state')?.touched || addressForm?.get('state')?.dirty || submitted) && !addressForm?.get('state')?.valid }"
+                        />
+                        <span class="invalid-feedback">
+                            <span *ngIf="addressForm?.get('state')?.errors?.required">
+                              Please enter a state.
+                            </span>
+                        </span>
                     </div>
                     <div class="mb-3">
                         <label for="zip" class="form-label">Zip Code</label>
-                        <input type="input" class="form-control" id="zip" placeholder="55555" formControlName="zip">
+                        <input
+                            type="input"
+                            class="form-control"
+                            id="zip"
+                            placeholder="55555"
+                            formControlName="zip"
+                            [ngClass]="{'is-invalid': (addressForm?.get('zip')?.touched || addressForm?.get('zip')?.dirty || submitted) && !addressForm?.get('zip')?.valid }"
+                        />
+                        <span class="invalid-feedback">
+                            <span *ngIf="addressForm?.get('zip')?.errors?.required">
+                              Please enter a zip code.
+                            </span>
+                        </span>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" *ngIf="updateMode" (click)="deleteAddress()" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
         </div>

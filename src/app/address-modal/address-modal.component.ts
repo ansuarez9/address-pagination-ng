@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
@@ -13,12 +13,11 @@ export class AddressModalComponent implements OnInit, OnDestroy {
     destroySubscriptions$ = new Subject();
     addressForm: FormGroup;
     updateMode: boolean;
+    submitted: boolean;
+    
+    @ViewChild('closeBtn') closeBtn: ElementRef;
 
     constructor(private fb: FormBuilder, private addressService: AddressService) {
-        
-    }
-
-    ngOnInit(): void {
         this.addressForm = this.fb.group({
             id: [null],
             nickname: ['', [Validators.required]],
@@ -28,9 +27,12 @@ export class AddressModalComponent implements OnInit, OnDestroy {
             city: ['', [Validators.required]],
             state: ['', [Validators.required]],
             zip: ['', [Validators.required]],
-            selected: [false, [Validators.required]]
+            selected: [false]
         });
+    }
 
+    ngOnInit(): void {
+        this.submitted = false;
         this.addressService.addressToModal$
             .pipe(
                 takeUntil(this.destroySubscriptions$)
@@ -47,7 +49,20 @@ export class AddressModalComponent implements OnInit, OnDestroy {
     }
 
     saveForm() {
+        this.submitted = true;
+        if(this.hasErrors() ){
+            return;
+        }
+
+        this.closeBtn.nativeElement.click();
         this.addressService.saveAddressForm(this.addressForm.value);
+    }
+
+    hasErrors(): boolean {
+        return !!(
+            this.addressForm.get('nickname')?.errors || this.addressForm.get('fullName')?.errors || this.addressForm.get('address1')?.errors ||
+            this.addressForm.get('city')?.errors || this.addressForm.get('state')?.errors || this.addressForm.get('zip')?.errors
+        );
     }
 
     deleteAddress() {
