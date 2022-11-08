@@ -2,7 +2,7 @@
   <div class="container">
     <a class="navbar-brand">Address Navigation</a>
     <div class="d-flex">
-      <button (click)="addNewAddress()" data-bs-toggle="modal" data-bs-target="#addressModal" type="button" class="btn btn-primary">New Address</button>
+      <button (click)="addNewAddress()" data-bs-toggle="modal" data-bs-target="#addressModal" type="button" class="btn btn-primary me-4">New Address</button>
       <div class="btn-group">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           Display {{displaySize}}
@@ -17,9 +17,15 @@
 </nav>
 <div class="container">
   <div class="d-flex justify-content-evenly align-items-center">
-    <button (click)="onPaginate('previous')" type="button" class="btn btn-link" [disabled]="disableNavigation?.previous">Previous</button>
-    <address-book [displaySize]="displaySize"></address-book>
-    <button (click)="onPaginate('next')" type="button" class="btn btn-link" [disabled]="disableNavigation?.next">Next</button>
+    <span class="col-md-1">
+      <button (click)="onPaginate('previous')" type="button" class="btn btn-link" [disabled]="disableNavigation?.previous">Previous</button>
+    </span>
+    <span class="col-md-10">
+      <address-book [displaySize]="displaySize"></address-book>
+    </span>
+    <span class="col-md-1">
+      <button (click)="onPaginate('next')" type="button" class="btn btn-link" [disabled]="disableNavigation?.next">Next</button>
+    </span>
   </div>
 </div>
 <address-modal></address-modal>

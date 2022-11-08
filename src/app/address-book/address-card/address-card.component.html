@@ -12,7 +12,7 @@
           [ngClass]="{'btn-success': address?.selected, 'btn-outline-primary': !address?.selected}"
           [disabled]="address?.selected"
           >{{address?.selected ? 'Selected' : 'Ship Here'}}</button>
-        <button (click)="selectAddressToUpdate()" data-bs-toggle="modal" data-bs-target="#addressModal" class="btn btn-secondary">Edit</button>
+        <button (click)="selectAddressToUpdate()" data-bs-toggle="modal" data-bs-target="#addressModal" class="btn btn-secondary ms-3">Edit</button>
       </div>
     </div>
 </div>
