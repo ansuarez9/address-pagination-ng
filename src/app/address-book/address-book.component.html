@@ -1,4 +1,7 @@
-<div class="mt-5 container">
+<div class="mt-3 container">
+    <div *ngIf="addressSelected === false" class="alert alert-info" role="alert">
+        Please select a shipping address!
+    </div>
     <div class="card-group justify-content-evenly">
         <span class="d-flex" *ngFor="let a of viewAddresses">
             <address-card (onSelected)="onSelected($event)" [address]="a"></address-card>

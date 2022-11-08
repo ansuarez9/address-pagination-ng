@@ -25,11 +25,13 @@ export class AddressBookComponent implements OnInit, OnDestroy {
     addresses: Address[] = [];
     viewRange: number[] = [];
     viewAddresses: Address[] = [];
+    addressSelected: boolean;
     destroySubscriptions$ = new Subject();
 
     constructor(private addressService: AddressService){}
 
     ngOnInit(): void {
+        this.addressSelected = true;
         this.addressService.getInitialAddresses()
             .subscribe(addresses => this.addresses = addresses);
 
@@ -58,6 +60,7 @@ export class AddressBookComponent implements OnInit, OnDestroy {
                     this.addresses = [address, ...this.addresses];
                 }
 
+                this.addressSelected = this.addresses.findIndex(address => address.selected === true) >= 0;
                 this.viewAddresses = this.addresses.slice(this.viewRange[0], this.viewRange[1]);
             });
     }
@@ -70,6 +73,7 @@ export class AddressBookComponent implements OnInit, OnDestroy {
     onSelected(a){
         this.resetSelectedProp(a);
         this.viewAddresses = this.addresses.slice(this.viewRange[0], this.viewRange[1]);
+        this.addressSelected = true;
     }
 
     resetSelectedProp(a?) {
